@@ -1,0 +1,5 @@
+{
+  "name": "MemePulse",
+  "postCreateCommand": "npm install --include=dev && cp -n .env.example .env.local",
+  "forwardPorts": [3000, 3001]
+}
