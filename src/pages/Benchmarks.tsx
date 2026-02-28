@@ -47,11 +47,11 @@ export function Benchmarks() {
 
   return (
     <div className="space-y-8">
-      <div className="bg-neutral-900/30 border border-white/5 rounded-2xl p-6">
-        <h1 className="text-2xl font-bold text-neutral-100 mb-2 flex items-center gap-2">
+      <div className="bg-white border border-neutral-200 rounded-2xl p-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-neutral-900 mb-2 flex items-center gap-2">
           <Trophy className="text-yellow-500" /> Historical Benchmarks
         </h1>
-        <p className="text-neutral-400 max-w-2xl">
+        <p className="text-neutral-500 max-w-2xl">
           Analyze past "moonshots" to understand the correlation between our TrueHype™ score and price action. 
           These case studies validate the algorithm's ability to detect viral momentum before major price breakouts.
         </p>
@@ -59,34 +59,34 @@ export function Benchmarks() {
 
       <div className="grid gap-8">
         {caseStudies.map((study) => (
-          <div key={study.name} className="bg-neutral-900/30 border border-white/5 rounded-2xl p-6">
+          <div key={study.name} className="bg-white border border-neutral-200 rounded-2xl p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-xl font-bold text-neutral-200">{study.name} Case Study</h2>
+                <h2 className="text-xl font-bold text-neutral-900">{study.name} Case Study</h2>
                 <p className="text-sm text-neutral-500">{study.date}</p>
               </div>
-              <div className="bg-green-500/10 border border-green-500/20 px-4 py-2 rounded-xl flex items-center gap-2">
-                <ArrowUpRight className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 font-bold">{study.return}</span>
+              <div className="bg-green-50 border border-green-200 px-4 py-2 rounded-xl flex items-center gap-2">
+                <ArrowUpRight className="w-4 h-4 text-green-600" />
+                <span className="text-green-600 font-bold">{study.return}</span>
               </div>
             </div>
             
-            <div className="h-[300px] bg-neutral-950/50 rounded-xl border border-white/5 p-4">
+            <div className="h-[300px] bg-neutral-50 rounded-xl border border-neutral-200 p-4">
               <HypeChart data={study.data} />
             </div>
             
             <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
-              <div className="p-3 bg-neutral-900/50 rounded-lg border border-white/5">
+              <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-200">
                 <span className="text-neutral-500 block mb-1">Peak Hype Score</span>
-                <span className="text-indigo-400 font-bold">842.5</span>
+                <span className="text-indigo-600 font-bold">842.5</span>
               </div>
-              <div className="p-3 bg-neutral-900/50 rounded-lg border border-white/5">
+              <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-200">
                 <span className="text-neutral-500 block mb-1">Time to 10x</span>
-                <span className="text-neutral-200 font-bold">4 Days</span>
+                <span className="text-neutral-900 font-bold">4 Days</span>
               </div>
-              <div className="p-3 bg-neutral-900/50 rounded-lg border border-white/5">
+              <div className="p-3 bg-neutral-50 rounded-lg border border-neutral-200">
                 <span className="text-neutral-500 block mb-1">Signal Accuracy</span>
-                <span className="text-emerald-400 font-bold">94%</span>
+                <span className="text-emerald-600 font-bold">94%</span>
               </div>
             </div>
           </div>

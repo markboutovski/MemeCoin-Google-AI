@@ -45,7 +45,7 @@ export function HypeChart({ data }: HypeChartProps) {
 
   if (!data || data.length === 0) {
     return (
-      <div className="h-[300px] w-full flex items-center justify-center bg-neutral-900/50 rounded-xl border border-white/5">
+      <div className="h-[300px] w-full flex items-center justify-center bg-neutral-50 rounded-xl border border-neutral-200">
         <p className="text-neutral-500">Waiting for data stream...</p>
       </div>
     );
@@ -61,11 +61,11 @@ export function HypeChart({ data }: HypeChartProps) {
               <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" vertical={false} />
           <XAxis 
             dataKey="time" 
             tickFormatter={(time) => format(time, 'HH:mm:ss')} 
-            stroke="#525252"
+            stroke="#a3a3a3"
             fontSize={12}
             tickMargin={10}
             minTickGap={30}
@@ -86,7 +86,7 @@ export function HypeChart({ data }: HypeChartProps) {
             tickFormatter={(val) => `$${val.toFixed(6)}`}
           />
           <Tooltip 
-            contentStyle={{ backgroundColor: '#171717', borderColor: '#333', borderRadius: '8px' }}
+            contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', borderRadius: '8px', color: '#171717' }}
             labelFormatter={(label) => format(label, 'HH:mm:ss')}
             formatter={(value: any, name: string, props: any) => {
               if (name === 'score') return [value.toFixed(2), 'TrueHype Score'];

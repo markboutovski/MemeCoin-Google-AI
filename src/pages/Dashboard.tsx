@@ -115,11 +115,11 @@ export function Dashboard() {
   return (
     <div className="relative h-full">
       {/* Bloomberg-style Table */}
-      <div className="bg-neutral-900/30 border border-white/5 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-white/5 bg-neutral-900/50 text-xs uppercase tracking-wider text-neutral-400">
+              <tr className="border-b border-neutral-200 bg-neutral-50 text-xs uppercase tracking-wider text-neutral-500">
                 <th className="p-4 font-medium">Symbol</th>
                 <th className="p-4 font-medium text-right">Price</th>
                 <th className="p-4 font-medium text-right">24h Change</th>
@@ -128,31 +128,31 @@ export function Dashboard() {
                 <th className="p-4 font-medium text-right">Volume (24h)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-neutral-100">
               {trackedCoins.map((coin) => (
                 <tr 
                   key={coin.address}
                   onClick={() => setSelectedCoinAddress(coin.address)}
-                  className="hover:bg-white/5 cursor-pointer transition-colors group"
+                  className="hover:bg-neutral-50 cursor-pointer transition-colors group"
                 >
                   <td className="p-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-xs">
+                      <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold text-xs">
                         {coin.symbol[0]}
                       </div>
                       <div>
-                        <div className="font-bold text-neutral-200 group-hover:text-indigo-400 transition-colors">{coin.symbol}</div>
+                        <div className="font-bold text-neutral-900 group-hover:text-indigo-600 transition-colors">{coin.symbol}</div>
                         <div className="text-xs text-neutral-500">{coin.name}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="p-4 text-right font-mono text-neutral-300">
+                  <td className="p-4 text-right font-mono text-neutral-700">
                     ${parseFloat(coin.priceUsd).toFixed(8)}
                   </td>
                   <td className="p-4 text-right">
                     <div className={cn(
                       "inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium",
-                      coin.priceChange.h24 >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"
+                      coin.priceChange.h24 >= 0 ? "bg-emerald-50 text-emerald-600" : "bg-rose-50 text-rose-600"
                     )}>
                       {coin.priceChange.h24 >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                       {Math.abs(coin.priceChange.h24).toFixed(2)}%
@@ -160,19 +160,19 @@ export function Dashboard() {
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <div className="w-24 h-1.5 bg-neutral-800 rounded-full overflow-hidden">
+                      <div className="w-24 h-1.5 bg-neutral-200 rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-indigo-500 transition-all duration-500"
                           style={{ width: `${Math.min(100, (coin.trueHypeScore / 50) * 100)}%` }}
                         />
                       </div>
-                      <span className="font-bold text-indigo-400 w-12">{coin.trueHypeScore.toFixed(1)}</span>
+                      <span className="font-bold text-indigo-600 w-12">{coin.trueHypeScore.toFixed(1)}</span>
                     </div>
                   </td>
-                  <td className="p-4 text-right font-mono text-neutral-400">
+                  <td className="p-4 text-right font-mono text-neutral-500">
                     ${(coin.marketCap / 1000).toFixed(1)}k
                   </td>
-                  <td className="p-4 text-right font-mono text-neutral-400">
+                  <td className="p-4 text-right font-mono text-neutral-500">
                     ${(coin.volume?.h24 || 0).toLocaleString()}
                   </td>
                 </tr>
@@ -189,7 +189,7 @@ export function Dashboard() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
             onClick={() => setSelectedCoinAddress(null)}
           >
             <motion.div
@@ -197,24 +197,24 @@ export function Dashboard() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-neutral-900 border border-white/10 rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+              className="bg-white border border-neutral-200 rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
             >
               {/* Modal Header */}
-              <div className="p-6 border-b border-white/5 flex justify-between items-center bg-neutral-900">
+              <div className="p-6 border-b border-neutral-200 flex justify-between items-center bg-white">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-xl">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold text-xl">
                     {selectedCoin.symbol[0]}
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-neutral-100">{selectedCoin.name} <span className="text-neutral-500 text-lg font-normal">({selectedCoin.symbol})</span></h2>
-                    <div className="flex items-center gap-2 text-sm text-neutral-400">
-                      <span className="font-mono text-neutral-500">{selectedCoin.address.slice(0, 8)}...{selectedCoin.address.slice(-8)}</span>
+                    <h2 className="text-2xl font-bold text-neutral-900">{selectedCoin.name} <span className="text-neutral-400 text-lg font-normal">({selectedCoin.symbol})</span></h2>
+                    <div className="flex items-center gap-2 text-sm text-neutral-500">
+                      <span className="font-mono text-neutral-400">{selectedCoin.address.slice(0, 8)}...{selectedCoin.address.slice(-8)}</span>
                     </div>
                   </div>
                 </div>
                 <button 
                   onClick={() => setSelectedCoinAddress(null)}
-                  className="p-2 hover:bg-white/5 rounded-full transition-colors"
+                  className="p-2 hover:bg-neutral-100 rounded-full transition-colors"
                 >
                   <X className="w-6 h-6 text-neutral-400" />
                 </button>
@@ -256,18 +256,18 @@ export function Dashboard() {
 
                 {/* Main Chart Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  <div className="lg:col-span-2 bg-neutral-950/50 border border-white/5 rounded-xl p-6">
+                  <div className="lg:col-span-2 bg-neutral-50 border border-neutral-200 rounded-xl p-6">
                     <div className="flex justify-between items-center mb-6">
-                      <h3 className="font-bold text-neutral-200 flex items-center gap-2">
-                        <BarChart3 className="w-5 h-5 text-indigo-400" />
+                      <h3 className="font-bold text-neutral-900 flex items-center gap-2">
+                        <BarChart3 className="w-5 h-5 text-indigo-600" />
                         Hype vs. Price Correlation
                       </h3>
                       <div className="flex gap-4 text-xs">
-                        <span className="flex items-center gap-1.5 text-indigo-400">
-                          <div className="w-2 h-2 bg-indigo-400 rounded-full"/> TrueHype Score
+                        <span className="flex items-center gap-1.5 text-indigo-600">
+                          <div className="w-2 h-2 bg-indigo-600 rounded-full"/> TrueHype Score
                         </span>
-                        <span className="flex items-center gap-1.5 text-emerald-400">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full"/> Price Action
+                        <span className="flex items-center gap-1.5 text-emerald-600">
+                          <div className="w-2 h-2 bg-emerald-600 rounded-full"/> Price Action
                         </span>
                       </div>
                     </div>
@@ -276,8 +276,8 @@ export function Dashboard() {
 
                   {/* Social Metrics Detail */}
                   <div className="space-y-4">
-                    <div className="bg-neutral-950/50 border border-white/5 rounded-xl p-6">
-                      <h3 className="font-bold text-neutral-200 mb-4">Social Intelligence</h3>
+                    <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+                      <h3 className="font-bold text-neutral-900 mb-4">Social Intelligence</h3>
                       <div className="space-y-4">
                         <MetricRow 
                           label="Unique Posters" 
@@ -300,8 +300,8 @@ export function Dashboard() {
                       </div>
                     </div>
 
-                    <div className="bg-neutral-950/50 border border-white/5 rounded-xl p-6 flex-1">
-                       <h3 className="font-bold text-neutral-200 mb-4">Live Feed</h3>
+                    <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6 flex-1">
+                       <h3 className="font-bold text-neutral-900 mb-4">Live Feed</h3>
                        <div className="max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                           <PostFeed posts={selectedCoin.posts} />
                        </div>
@@ -319,24 +319,24 @@ export function Dashboard() {
 
 function StatCard({ label, value, subValue, icon: Icon, trend, color }: any) {
   const colors: any = {
-    indigo: "text-indigo-400 bg-indigo-500/5 border-indigo-500/20",
-    emerald: "text-emerald-400 bg-emerald-500/5 border-emerald-500/20",
-    blue: "text-blue-400 bg-blue-500/5 border-blue-500/20",
-    orange: "text-orange-400 bg-orange-500/5 border-orange-500/20",
+    indigo: "text-indigo-600 bg-indigo-50 border-indigo-200",
+    emerald: "text-emerald-600 bg-emerald-50 border-emerald-200",
+    blue: "text-blue-600 bg-blue-50 border-blue-200",
+    orange: "text-orange-600 bg-orange-50 border-orange-200",
   };
 
   return (
-    <div className={cn("p-5 rounded-xl border bg-neutral-900", colors[color] || colors.indigo)}>
+    <div className={cn("p-5 rounded-xl border bg-white", colors[color] || colors.indigo)}>
       <div className="flex justify-between items-start mb-2">
-        <p className="text-xs font-medium text-neutral-400 uppercase tracking-wider">{label}</p>
+        <p className="text-xs font-medium text-neutral-500 uppercase tracking-wider">{label}</p>
         <Icon className={cn("w-5 h-5 opacity-80", colors[color]?.split(' ')[0])} />
       </div>
       <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-bold text-neutral-100">{value}</p>
+        <p className="text-2xl font-bold text-neutral-900">{value}</p>
         {subValue && <span className="text-xs text-neutral-500">{subValue}</span>}
       </div>
       {trend && (
-        <div className="mt-2 text-xs font-medium text-neutral-300 bg-white/5 inline-block px-2 py-1 rounded">
+        <div className="mt-2 text-xs font-medium text-neutral-600 bg-white/50 inline-block px-2 py-1 rounded border border-neutral-200/50">
           {trend}
         </div>
       )}
@@ -346,13 +346,13 @@ function StatCard({ label, value, subValue, icon: Icon, trend, color }: any) {
 
 function MetricRow({ label, value, subtext, highlight }: any) {
   return (
-    <div className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
-      <span className="text-sm text-neutral-400">{label}</span>
+    <div className="flex justify-between items-center py-2 border-b border-neutral-200 last:border-0">
+      <span className="text-sm text-neutral-500">{label}</span>
       <div className="text-right">
-        <div className={cn("font-mono font-medium", highlight ? "text-indigo-400" : "text-neutral-200")}>
+        <div className={cn("font-mono font-medium", highlight ? "text-indigo-600" : "text-neutral-900")}>
           {value}
         </div>
-        {subtext && <div className="text-[10px] text-neutral-600">{subtext}</div>}
+        {subtext && <div className="text-[10px] text-neutral-400">{subtext}</div>}
       </div>
     </div>
   );
